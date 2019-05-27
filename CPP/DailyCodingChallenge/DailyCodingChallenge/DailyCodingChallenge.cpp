@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include <array>
 #include <iostream>
+#include <stack>
 #include "../ChallengeSource/Person.h"
 #include "../ChallengeSource/Person.cpp"
 
@@ -40,7 +41,7 @@ namespace DailyCodingChallenge
 				left[i] = input[i - 1] * left[i - 1];
 			}
 
-			for (int j = input.size() - 2; j >= 0; j--)
+			for (int j = (int)input.size() - 2; j >= 0; j--)
 			{
 				right[j] = input[j + 1] * right[j + 1];
 			}
@@ -50,7 +51,35 @@ namespace DailyCodingChallenge
 				output[i] = left[i] * right[i];
 			}
 
-			Assert::AreEqual(output, expected);
+			//Assert::AreEqual(output, expected);
+		}
+		
+		// Given a string expression, find whether the given expression is balanced or not.
+		TEST_METHOD(TestMethod3)
+		{
+			std::string inputTrue = "{[()]}";
+			std::string inputFalse = "{{[]";
+			std::string openExpressions = "[{(";
+			std::string closeExpressions = "]})";
+
+			inputTrue.erase(remove(inputTrue.begin(), inputTrue.end(), ' '), inputTrue.end());
+
+			std::stack<int> scanner;
+
+			for (size_t i = 0; i < inputTrue.size(); i++)
+			{
+				if (openExpressions.find(inputTrue[i]) != std::string::npos)
+				{
+					scanner.push(inputTrue[i]);
+				}
+
+				if (closeExpressions.find(inputTrue[i]) != std::string::npos)
+				{
+					scanner.pop();
+				}
+			}
+
+			Assert::AreEqual((int)scanner.size(), 0);
 		}
 	};
 }
