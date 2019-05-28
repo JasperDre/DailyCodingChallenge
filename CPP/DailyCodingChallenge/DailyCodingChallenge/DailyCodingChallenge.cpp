@@ -3,6 +3,7 @@
 #include <array>
 #include <iostream>
 #include <stack>
+#include <unordered_set>
 #include "../ChallengeSource/Person.h"
 #include "../ChallengeSource/Person.cpp"
 
@@ -80,6 +81,21 @@ namespace DailyCodingChallenge
 			}
 
 			Assert::AreEqual((int)scanner.size(), 0);
+		}
+		
+		// Given a sum, find the possible solutions.
+		TEST_METHOD(TestMethod4)
+		{
+			int sum = 8;
+			std::vector<int> input = { 1, 2, 4, 4 };
+			std::unordered_set<int> complements;
+
+			for (size_t i = 0; i < input.size(); i++)
+			{
+				Assert::IsTrue(complements.find(input[i]) != complements.end());
+
+				complements.insert(sum - input[i]);
+			}
 		}
 	};
 }
