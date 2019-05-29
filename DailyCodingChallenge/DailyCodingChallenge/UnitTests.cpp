@@ -29,30 +29,30 @@ namespace DailyCodingChallenge
 			// STD array for input method
 			std::array<int, 5> input = { 1, 2, 3, 4, 5 };
 
-			int* expected = new int[input.size()] { 120, 60, 40, 30, 24 };
-			int* left = new int[sizeof(int) * input.size()];
-			int* right = new int[sizeof(int) * input.size()];
-			int* output = new int[sizeof(int) * input.size()];
+			int* expected = new int[5] { 120, 60, 40, 30, 24 };
+			int* left = new int[sizeof(int) * 5];
+			int* right = new int[sizeof(int) * 5];
+			int* output = new int[sizeof(int) * 5];
 
 			left[0] = 1;
-			right[input.size() - 1] = 1;
+			right[4] = 1;
 
-			for (unsigned int i = 1; i < input.size(); i++)
+			for (unsigned int i = 1; i < 5; i++)
 			{
 				left[i] = input[i - 1] * left[i - 1];
 			}
 
-			for (int j = (int)input.size() - 2; j >= 0; j--)
+			for (int j = 3; j >= 0; j--)
 			{
 				right[j] = input[j + 1] * right[j + 1];
 			}
 
-			for (unsigned int i = 0; i < input.size(); i++)
+			for (unsigned int i = 0; i < 5; i++)
 			{
 				output[i] = left[i] * right[i];
 			}
 
-			//Assert::AreEqual(output, expected);
+			Assert::AreSame(output, expected);
 		}
 		
 		// Given a string expression, find whether the given expression is balanced or not.
