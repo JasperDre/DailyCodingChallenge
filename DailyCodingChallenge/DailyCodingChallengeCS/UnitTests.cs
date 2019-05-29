@@ -67,5 +67,32 @@ namespace DailyCodingChallengeCS
 
             Assert.IsTrue(scanner.Count == 0);
         }
+
+        // Calculate the sum of all numbers from 1 up to n.
+        [TestMethod]
+        public void TestMethod3()
+        {
+            // O(n)
+            int n = 12;
+            int total = 0;
+
+            for (int i = 0; i <= n; i++)
+            {
+                total += i;
+            }
+
+            // O(1)
+            int n1 = 12;
+            int total1 = 0;
+
+            total1 = n1 * (n1 + 1) / 2;
+        }
+
+        // There's a staircase with N steps, and you can climb 1 or 2 steps at a time. Given N, write a function that returns the number of unique ways you can climb the staircase. The order of the steps matters.
+        [TestMethod]
+        public void TestMethod4()
+        {
+            
+        }
     }
 }
