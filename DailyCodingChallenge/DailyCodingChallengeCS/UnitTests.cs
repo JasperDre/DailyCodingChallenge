@@ -38,5 +38,34 @@ namespace DailyCodingChallengeCS
 
             CollectionAssert.AreEqual(products, expected);
         }
+
+        // Given a string expression, find whether the given expression is balanced or not.
+        [TestMethod]
+        public void TestMethod2()
+        {
+            string inputTrue = "{[()]}";
+            string inputFalse = "{[})){";
+            string openExpressions = "{[(";
+            string closeExpressions = "}])";
+
+            inputTrue.Replace(" ", string.Empty);
+
+            Stack<int> scanner = new Stack<int>();
+
+            for (int i = 0; i < inputTrue.Length; i++)
+            {
+                if (openExpressions.Contains(inputTrue[i].ToString()))
+                {
+                    scanner.Push(inputTrue[i]);
+                }
+
+                if (closeExpressions.Contains(inputTrue[i].ToString()))
+                {
+                    scanner.Pop();
+                }
+            }
+
+            Assert.IsTrue(scanner.Count == 0);
+        }
     }
 }
