@@ -72,8 +72,10 @@ namespace DailyCodingChallengeCS
         [TestMethod]
         public void TestMethod3()
         {
-            // O(n)
             int n = 12;
+            int expected = 78;
+
+            // O(n)
             int total = 0;
 
             for (int i = 0; i <= n; i++)
@@ -82,10 +84,11 @@ namespace DailyCodingChallengeCS
             }
 
             // O(1)
-            int n1 = 12;
             int total1 = 0;
 
-            total1 = n1 * (n1 + 1) / 2;
+            total1 = n * (n + 1) / 2;
+
+            Assert.AreEqual(total1, expected);
         }
 
         // There's a staircase with N steps, and you can climb 1 or 2 steps at a time. Given N, write a function that returns the number of unique ways you can climb the staircase. The order of the steps matters.
