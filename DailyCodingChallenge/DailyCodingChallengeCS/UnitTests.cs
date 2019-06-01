@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DailyCodingChallengeCS
@@ -90,11 +91,34 @@ namespace DailyCodingChallengeCS
             Assert.AreEqual(total1, expected);
         }
 
-        // There's a staircase with N steps, and you can climb 1 or 2 steps at a time. Given N, write a function that returns the number of unique ways you can climb the staircase. The order of the steps matters.
+        // Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
         [TestMethod]
         public void TestMethod4()
         {
-            
+            int[] input = { 3, 4, -1, 1 };
+            int expected = 2;
+            int output = 1;
+
+            HashSet<int> positiveNumbers = new HashSet<int>();
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] > 0)
+                {
+                    positiveNumbers.Add(input[i]);
+                }
+            }
+
+            for (int i = 0; i < input.Length + 1; i++)
+            {
+                if (positiveNumbers.Contains(output))
+                {
+                    output++;
+                }
+                else break;
+            }
+
+            Assert.AreEqual(output, expected);
         }
     }
 }
