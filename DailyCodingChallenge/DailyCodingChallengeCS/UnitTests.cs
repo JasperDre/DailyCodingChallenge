@@ -58,8 +58,7 @@ namespace DailyCodingChallengeCS
                 {
                     scanner.Push(inputTrue[i]);
                 }
-
-                if (closeExpressions.Contains(inputTrue[i].ToString()))
+                else if (closeExpressions.Contains(inputTrue[i].ToString()))
                 {
                     scanner.Pop();
                 }
