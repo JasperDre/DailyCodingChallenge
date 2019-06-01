@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DailyCodingChallengeCS
@@ -117,6 +118,39 @@ namespace DailyCodingChallengeCS
                 }
                 else break;
             }
+
+            Assert.AreEqual(output, expected);
+        }
+
+        // Given the mapping a = 1, b = 2, ... z = 26, and an encoded message, count the number of ways it can be decoded.
+        [TestMethod]
+        public void TestMethod5()
+        {
+            string input = "111";
+            int expected = 3;
+            int output;
+
+            int i, w = 0;
+            int[] ways = { 1, 0 };
+
+            for (i = w; i < input.Length; ++i)
+            {
+                w = 0;
+
+                if ((i > 0) && ((input[i - 1] == '1') || (input[i - 1] == '2' && input[i] < '7')))
+                {
+                    w += ways[1];
+                }
+
+                if (input[i] > '0')
+                {
+                    w += ways[0];
+                }
+                ways[1] = ways[0];
+                ways[0] = w;
+            }
+
+            output =  ways[0];
 
             Assert.AreEqual(output, expected);
         }
