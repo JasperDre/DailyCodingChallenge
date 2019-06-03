@@ -154,5 +154,30 @@ namespace DailyCodingChallengeCS
 
             Assert.AreEqual(output, expected);
         }
+
+
+        // Given an array of integers, return the sum of the lowest and highest number. 
+        [TestMethod]
+        public void TestMethod6()
+        {
+            int[] input = { 1, 3, 6, 11};
+            int output = 0;
+            int expected = 12;
+
+            int lowest = input.Min();
+            int highest = input.Max();
+
+            //for (int i = 0; i < input.Length; i++)
+            //{
+            //    if (input[i] < lowest)
+            //    {
+            //        lowest = input[i];
+            //    }
+            //}
+
+            output = lowest + highest;
+
+            Assert.AreEqual(output, expected);
+        }
     }
 }
