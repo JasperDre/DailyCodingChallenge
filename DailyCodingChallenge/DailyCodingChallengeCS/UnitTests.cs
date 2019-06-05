@@ -190,7 +190,7 @@ namespace DailyCodingChallengeCS
         }
 
 
-        // Given an array of integers, return the sum of the lowest and highest number. 
+        // Given an array of integers, return the sum of the lowest and highest number without using LINQ.
         [TestMethod]
         public void TestMethod6()
         {
@@ -198,16 +198,20 @@ namespace DailyCodingChallengeCS
             int output = 0;
             int expected = 12;
 
-            int lowest = input.Min();
-            int highest = input.Max();
+            int lowest = input[0];
+            int highest = input[0];
 
-            //for (int i = 0; i < input.Length; i++)
-            //{
-            //    if (input[i] < lowest)
-            //    {
-            //        lowest = input[i];
-            //    }
-            //}
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (input[i] < lowest)
+                {
+                    lowest = input[i];
+                }
+                else if (input[i] > highest)
+                {
+                    highest = input[i];
+                }
+            }
 
             output = lowest + highest;
 
