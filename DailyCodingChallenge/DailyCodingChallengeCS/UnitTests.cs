@@ -41,31 +41,65 @@ namespace DailyCodingChallengeCS
             CollectionAssert.AreEqual(products, expected);
         }
 
-        // Given a string expression, find whether the given expression is balanced or not.
+        // Given a string of braces, find whether the given expression is balanced or not.
+        // A string like '{}[]' is balanced, while a string like '}{[]' is not.
         [TestMethod]
         public void TestMethod2()
         {
-            string inputTrue = "{[()]}";
-            string inputFalse = "{[})){";
+            // Define input string of braces.
+            string inputString = "{}[]";
+
+            // Define possible expressions of braces.
             string openExpressions = "{[(";
             string closeExpressions = "}])";
 
-            inputTrue.Replace(" ", string.Empty);
+            // Remove spaces from input string.
+            inputString.Replace(" ", string.Empty);
 
-            Stack<int> scanner = new Stack<int>();
-
-            for (int i = 0; i < inputTrue.Length; i++)
+            if (inputString.Length % 2 != 0)
             {
-                if (openExpressions.Contains(inputTrue[i].ToString()))
+                // Input string is uneven, so there won't be matching braces.
+                Assert.Fail();
+            }
+
+            // Define a Stack of characters to stack each brace on top of each other, because the order matters.
+            Stack<char> scanner = new Stack<char>();
+
+            for (int i = 0; i < inputString.Length; i++)
+            {
+                if (openExpressions.Contains(inputString[i]))
                 {
-                    scanner.Push(inputTrue[i]);
+                    scanner.Push(inputString[i]);
                 }
-                else if (closeExpressions.Contains(inputTrue[i].ToString()))
+                else if (scanner.Count > 0)
                 {
-                    scanner.Pop();
+                    switch (inputString[i])
+                    {
+                        case '}':
+                            if (scanner.Peek().ToString() == "{")
+                            {
+                                scanner.Pop();
+                            }
+                            break;
+                        case ']':
+                            if (scanner.Peek().ToString() == "[")
+                            {
+                                scanner.Pop();
+                            }
+                            break;
+                        case ')':
+                            if (scanner.Peek().ToString() == "(")
+                            {
+                                scanner.Pop();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
 
+            // Stack should be empty if there was a balanced amount of braces based on type.
             Assert.IsTrue(scanner.Count == 0);
         }
 
