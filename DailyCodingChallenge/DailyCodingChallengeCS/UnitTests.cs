@@ -189,7 +189,6 @@ namespace DailyCodingChallengeCS
             Assert.AreEqual(output, expected);
         }
 
-
         // Given an array of integers, return the sum of the lowest and highest number without using LINQ.
         [TestMethod]
         public void TestMethod6()
@@ -216,6 +215,35 @@ namespace DailyCodingChallengeCS
             output = lowest + highest;
 
             Assert.AreEqual(output, expected);
+        }
+
+        // The area of a circle is defined as πr^2. Estimate π to 3 decimal places using a Monte Carlo method.
+        [TestMethod]
+        public void TestMethod7()
+        {
+            double output = -1;
+            bool result = false;
+
+            Random rng = new Random();
+            int deviates = 0;
+
+            for (int i = 0; i < 1000; i++)
+            {
+                if (Math.Pow(rng.NextDouble(), 2) + Math.Pow(rng.NextDouble(), 2) <= 1)
+                {
+                    deviates++;
+                }
+            }
+
+            output = 4.0 * deviates / 1000;
+
+            // Check if estimated value is somewhat close
+            if (output > 3.1 && output < 3.2)
+            {
+                result = true;
+            }
+
+            Assert.IsTrue(result);
         }
     }
 }
