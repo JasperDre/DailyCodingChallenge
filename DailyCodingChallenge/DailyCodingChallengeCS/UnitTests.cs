@@ -245,23 +245,5 @@ namespace DailyCodingChallengeCS
 
             Assert.IsTrue(result);
         }
-
-        // Given an N by K matrix where the nth row and kth column represents the cost to build the nth house with kth color, return the minimum cost which achieves this goal.
-        [TestMethod]
-        public void TestMethod8()
-        {
-            int[,] input = new int[,] { { 1, 2, 3, 4 }, { 1, 2, 1, 0 }, { 6, 1, 1, 5 } };
-
-            Assert.IsTrue(result);
-        }
-
-        // Given an array of time intervals (start, end) for classroom lectures (possibly overlapping), find the minimum number of rooms required.
-        [TestMethod]
-        public void TestMethod9()
-        {
-            int[,] input = new int[,] { { 30, 75 }, { 0, 50 }, { 60, 150 } };
-
-            Assert.IsTrue(result);
-        }
     }
 }
